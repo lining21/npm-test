@@ -8,39 +8,308 @@
   outline: none;
 }
 
-html {
-  // 基本字体
-  font-size: 13px;
+html,
+body,
+div,
+span,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+a,
+address,
+em,
+img,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+i,
+b,
+s {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-family: Helvetica, Arial;
+  word-break: break-all;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body > .main {
+  overflow-y: auto;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+  -moz-appearance: none;
+  background-color: transparent;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a img {
+  border: none;
+}
+
+a,
+a:link {
+  text-decoration: none;
+  color: #333;
+}
+
+button {
+  overflow: visible;
+  padding: 0;
+  margin: 0;
+  border: 0 none;
+  background-color: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+}
+
+textarea,
+input {
+  background: none;
+  padding: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+
+input[type="number"] {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+}
+
+input[type="search"] {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+}
+
+input[type="text"] {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+}
+
+input[type="tel"] {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+}
+
+input[type="button"] {
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+input[type="password"] {
+  -webkit-text-security: disc;
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+}
+
+input[type="submit"] {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+}
+
+textarea:focus,
+input:focus,
+button:focus {
+  outline: none;
 }
 
 body {
-  margin: 0;
-  // sans-serif 射线字体
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.2em;
-  background: #f1f1f1;
-  -webkit-font-smoothing: antialiased;
+  word-wrap: break-word;
+  font-size: 14px;
+  color: #000;
+  line-height: 1.5;
+  font-family: Helvetica;
 }
 
-a {
-  color: #999;
+* {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  overflow-scrolling: touch;
+  -webkit-overflow-scrolling: touch;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-sizing: border-box;
 }
 
-p {
-  line-height: 1.5em;
+// 可以使用 v-cloak 指令设置样式，这些样式会在 Vue 实例编译结束时，从绑定的 HTML 元素上被移除。
+// 当网络较慢，网页还在加载 Vue.js ，而导致 Vue 来不及渲染，这时页面就会显示出 Vue 源代码。我们可以使用 v-cloak 指令来解决这一问题。
+
+[v-cloak] {
+  opacity: 0 !important;
 }
 
-@each $colorKey, $color in $colors {
+.w-1200 {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.inline-div {
+  display: inline-block;
+}
+
+.block {
+  display: block !important;
+}
+
+/*全局CSS*/
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
+.bgimg-mid {
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.overflow-auto {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  overflow-scrolling: touch;
+}
+
+.overflow-hide {
+  overflow: hidden;
+}
+
+// flex 布局
+.d-flex {
+  display: flex;
+}
+
+// flex 布局竖向布局
+.flex-column {
+  flex-direction: column;
+}
+
+// flex wrap排布
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+// flex justify-content布局；
+@each $key, $value in $flex-jc {
+  .jc-#{$key} {
+    justify-content: $value;
+  }
+}
+
+// flex align-center布局；
+@each $key, $value in $flex-ai {
+  .ai-#{$key} {
+    align-items: $value;
+  }
+}
+
+@each $key in $flex-number {
+  .flex-#{$key} {
+    flex: $key;
+  }
+}
+
+.flex-gorw-1 {
+  flex-grow: 1;
+}
+
+// 颜色配置
+@each $colorKey, $color in $bg-color {
   .text-#{$colorKey} {
     color: $color;
   }
-
   .bg-#{$colorKey} {
     background-color: $color;
   }
 }
 
-// text overflow
+// 字体样式
+// 字体的font-weight
+@each $fontWeight in $bg-color {
+  .fw-#{$fontWeight} {
+    font-weight: $fontWeight;
+  }
+}
+
+// 宽度百分比定义
+@each $width, $width-num in $width-number {
+  .w-#{$width} {
+    width: $width-num;
+  }
+}
+
+// 高度百分比定义
+@each $height, $height-num in $height-number {
+  .h-#{$height} {
+    height: $height-num;
+  }
+}
+
+// 高度px定义
+@each $height, $height-px in $height-px {
+  .h-#{$height} {
+    height: $height-px;
+  }
+  .min-h-#{$height} {
+    height: $height-px;
+  }
+}
+
+// 工程整体风格基础颜色配置；
+// @each $colorKey, $color in $colors {
+//   .text-#{$colorKey} {
+//     color: $color;
+//   }
+
+//   .bg-#{$colorKey} {
+//     background-color: $color;
+//   }
+// }
+
+// text overflow 多余字体显示省略号
 .text-ellipsis {
   display: inline-block;
   overflow: hidden;
@@ -48,7 +317,7 @@ p {
   white-space: nowrap;
 }
 
-// text each是循环
+// text each是循环 字体是否居中，字体大小
 @each $var in (left, center, right) {
   .text-#{$var} {
     text-align: $var !important;
@@ -61,57 +330,22 @@ p {
   }
 }
 
-// width, height
-.w-100 {
-  width: 100%;
-}
-.h-100 {
-  height: 100%;
-}
-
-// flex
-.d-flex {
-  display: flex;
-}
-
-.flex-column {
-  flex-direction: column;
-}
-
-.flex-wrap {
-  flex-wrap: wrap;
-}
-
-@each $key, $value in $flex-jc {
-  .jc-#{$key} {
-    justify-content: $value;
-  }
-}
-
-@each $key, $value in $flex-ai {
-  .ai-#{$key} {
-    align-items: $value;
-  }
-}
-
-.flex-1 {
-  flex: 1;
-}
-
-.flex-gorw-1 {
-  flex-grow: 1;
-}
+// width, height  宽、高百分百
+// .w-100 {
+//   width: 100%;
+// }
+// .h-100 {
+//   height: 100%;
+// }
 
 // spacing
 // 0-5: 0 1
-// .mt-1 => margin top level 1  .pb-2 => padding-bottom
-
-// m-0, mx-0
+// .mt-1 => margin top level 1  .pb-2 => padding-bottom level 2
 
 @each $typeKey, $type in $spacing-types {
   @each $directionKey, $direction in $spacing-directions {
     @each $sizeKey, $size in $spacing-sizes {
-      // .mt-1{}
+      // .mt-1
       .#{$typeKey}#{$directionKey}-#{$sizeKey} {
         #{$type}-#{$direction}: $size * $spacing-base-size;
       }
@@ -131,41 +365,9 @@ p {
       }
     }
   }
-  // .#{$typeKey} {
-  //   #{$type} : 0;
-  // }
 }
 
-// button
-.btn {
-  border: none;
-  border-radius: 0.1538rem;
-  font-size: map-get($font-sizes, "sm") * $base-font-size;
-  padding: 0.2rem 0.6rem;
-}
-
-// nav
-.nav {
-  display: flex;
-  .nav-item {
-    border-bottom: 3px solid transparent;
-    padding-bottom: 0.2rem;
-    &.active {
-      color: map-get($colors, "primary");
-      border-bottom-color: map-get($colors, "primary");
-    }
-  }
-  &.nav-inverse {
-    .nav-item {
-      color: map-get($colors, "white");
-      &.active {
-        border-bottom-color: map-get($colors, "white");
-      }
-    }
-  }
-}
-
-//sprite
+//sprite 雪碧图示例
 .sprite {
   // 0 0 左上角对齐
   // background: url(../images/icon/icon.png) no-repeat 0 0;
@@ -189,7 +391,7 @@ p {
   }
 }
 
-// borders
+// borders 边界
 @each $dir in (top, right, bottom, left) {
   .border-#{$dir} {
     border-#{$dir}: 1px solid $border-color;

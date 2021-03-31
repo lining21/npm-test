@@ -1,6 +1,6 @@
 {
   "name": "npm-test-lining21",
-  "version": "1.0.2",
+  "version": "1.0.4",
   "description": "测试一下自己发布npm包",
   "main": "lib/index.js",
   "scripts": {
